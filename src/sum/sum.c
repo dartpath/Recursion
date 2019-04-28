@@ -9,16 +9,16 @@ int sum_rec(int *arr, int size)
     }
 }
 
-int iter(int product, int counter, int *arr)
+int iter_s(int product, int counter, int *arr)
 {
     if (counter == 0) {
         return product;
     }
 
-    return iter(product + *arr, counter - 1, arr + 1);
+    return iter_s(product + *arr, counter - 1, arr + 1);
 }
 
 int sum_iter(int *arr, int size)
 {
-    return iter(0, size, arr);
+    return iter_s(0, size, arr);
 }
