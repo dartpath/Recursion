@@ -46,12 +46,9 @@ int main()
     printf("Введите число: ");
     scanf("%d", &num);
 
-    if (num > 0) {
-        char *str = int_to_str(num);
-        printf("Полученная строка: %s\n", str);
-        free(str);
-    } else {
-        printf("Полученная строка: 0\n");
-    }
+    char *str = malloc(num_of_dig(num) * sizeof(char));
+    str = int_to_str(str, num, num_of_dig(num));
+    printf("Полученная строка: %s\n", str);
+    free(str);
     return 0;
 }

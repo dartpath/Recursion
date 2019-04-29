@@ -4,24 +4,27 @@
 int num_of_dig(int num)
 {
     int k = 0;
-    while (num > 0) {
+    while (num != 0) {
         num /= 10;
         k++;
     }
     return k;
 }
 
-char *int_to_str(int num)
+char *int_to_str(char *str, int num, int dig)
 {
-    if (num > 0) {
-        int k = num_of_dig(num);
-        char *strnum = malloc(k * sizeof(char));
-        for (int i = k - 1; i >= 0; i--) {
-            strnum[i] = (num % 10) + '0';
-            num /= 10;
-        }
-        return strnum;
-    } else {
-        return "0";
-    }
+    if (dig <= 0) {
+        return str;;
+    } 
+    if (str[dig - 2] == '-') {
+        str[dig - 1] = (num % 10) + '0';
+        return str;;
+    } 
+    if (num < 0) {
+        str[0] = '-';
+        str = realloc(str, num_of_dig(num) * sizeof(char) + 1);
+        return int_to_str(str, num * (-1), dig + 1);
+    } 
+    str[dig - 1] = (num % 10) + '0';
+    return int_to_str(str, num / 10, dig - 1);
 }
