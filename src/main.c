@@ -1,6 +1,8 @@
-#include<stdio.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "sum/sum.h"
 #include "fib/fib.h"
+#include "itos/itos.h"
 
 int main() 
 {
@@ -34,6 +36,22 @@ int main()
         printf("Введите номер числа: ");
         scanf("%d", &n);
     }
-    printf("Число Фибоначчи под номером %d: %d\n", n, fib_rec(n));
+    printf("Число Фибоначчи(рекурсивная): %d\n", fib_rec(n));
+    printf("Число Фибоначчи(итеративная): %d\n", fib_iter(n));
+        
+    //Функция преобразования числа в строку
+    printf("\nПеревод числа в строку\n");
+
+    int num;
+    printf("Введите число: ");
+    scanf("%d", &num);
+
+    if (num > 0) {
+        char *str = int_to_str(num);
+        printf("Полученная строка: %s\n", str);
+        free(str);
+    } else {
+        printf("Полученная строка: 0\n");
+    }
     return 0;
 }
